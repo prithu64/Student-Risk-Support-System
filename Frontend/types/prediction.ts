@@ -36,9 +36,3 @@ export interface HistoryRecord {
   created_at: string;
 }
 
-export interface ModelResult {
-  model: string;
-  accuracy: number;
-  weighted_f1: number;
-  macro_f1: number;
-}

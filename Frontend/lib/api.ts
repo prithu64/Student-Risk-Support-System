@@ -1,6 +1,5 @@
 import type {
   HistoryRecord,
-  ModelResult,
   PredictionRequest,
   PredictionResponse,
 } from "@/types/prediction";
@@ -60,17 +59,3 @@ export function deletePrediction(predictionId: string): Promise<{ message: strin
   });
 }
 
-export async function getModelResults(): Promise<ModelResult[]> {
-  const data = await request<
-    Record<string, Omit<ModelResult, "model">> | ModelResult[]
-  >("/model-results");
-
-  if (Array.isArray(data)) {
-    return data;
-  }
-
-  return Object.entries(data).map(([model, metrics]) => ({
-    model,
-    ...metrics,
-  }));
-}
